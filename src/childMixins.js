@@ -12,7 +12,9 @@ export default {
             const names = Object.keys(context);
             this.__$$contextData = {};
             for(const name of names) {
-                const item = context[name];
+                let item = context[name];
+                if(toRawType(item) === 'Function')
+                    item = { type: item };
                 const type = item.type;
                 const typeStr = getType(type);
                 const defaultValue = item.default;
@@ -33,11 +35,8 @@ export default {
                     }
                     else if (typeStr === 'Function')
                         value = value.bind(this);
-                    if(value !== undefined)
-                        checkValueType(value, type, name);
                 }
-                if(value !== undefined)
-                    checkValueType(value, type, name);
+                checkValueType(value, type, name);
                 this.__$$contextData[name] = value;
                 contextParent.$on(`update-context:${name}`, ({value}) => {
                     checkValueType(value, type, name);
@@ -56,9 +55,9 @@ export default {
                             return this.__$$contextData[name];0
                         },
                         set(context) {
-                            if(context instanceof ComputedContext) {
+                            if(context instanceof ComputedContext)
                                 this.__$$contextData[name] = context.value;
-                            } else
+                            else
                                 console.error(`[vue-context-data]: context data ${name} is not allowed to modify，Please provide the action function by the parent context to manipulate the property`);
                         }
                     }

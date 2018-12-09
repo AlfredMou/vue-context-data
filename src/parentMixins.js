@@ -7,7 +7,9 @@ export default {
             this.__$$context = {};
             this.__$$contextWatch = [];
             for(const name of Object.keys(context)) {
-                const item = context[name];
+                let item = context[name];
+                if(getType(item) === 'Function')
+                    item = { type: item };
                 const type = getType(item.type);
                 let value = item.value;
                 if (type === 'Object' || type === 'Array') {

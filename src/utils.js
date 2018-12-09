@@ -32,6 +32,8 @@ export function toRawType (value) {
     return _toString.call(value).slice(8, -1)
 }
 export function checkValueType(value, type, name) {
+    if(type === undefined || value === undefined)
+        return true;
     const result = assertType(value, type);
     if(!result.valid)
         console.error(`[vue-context-data warn]: Invalid context data: type check failed for prop "${name}". Expected ${result.expectedType}, got ${toRawType(value)}.`);

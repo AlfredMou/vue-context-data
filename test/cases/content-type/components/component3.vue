@@ -11,10 +11,7 @@
 <script>
 export default {
     contextTypes: {
-        instance: {
-            type: Object,
-            default: {},
-        }
+        instance: Object,
     },
     data(){
         return {
