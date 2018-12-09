@@ -9,14 +9,12 @@
 
 <script>
 import component1 from './components/component1.vue';
-import miXins from '../../../src/parentMixins.js';
 export default {
     el: '#app',
     name: 'u-main',
     components: {
         'u-component-1': component1,
     },
-    mixins: [miXins],
     context: {
         name: String,
         instance: Object,

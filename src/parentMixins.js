@@ -3,37 +3,39 @@ import { checkValueType, getType, toRawType } from './utils.js';
 export default {
     beforeCreate() {
         const context = this.$options.context;
-        if(context) {
+        if (context) {
             this.__$$context = {};
             this.__$$contextWatch = [];
-            for(const name of Object.keys(context)) {
+            for (const name of Object.keys(context)) {
                 let item = context[name];
-                if(getType(item) === 'Function')
+                if (getType(item) === 'Function')
                     item = { type: item };
                 const type = getType(item.type);
                 let value = item.value;
-                if (type === 'Object' || type === 'Array') {
-                    if(toRawType(value) !== 'Function')
-                        throw new Error(`[Vue warn]: Invalid default value for context data "${name}": Context datas with type Object/Array must use a factory function to return the default value.`);
-                    else
-                        value = value.apply(this);
-                } else if (type === 'Function')
-                    value = value.bind(this);
+                if (value !== undefined) {
+                    if (type === 'Object' || type === 'Array') {
+                        if (toRawType(value) !== 'Function')
+                            throw new Error(`[vue-context-data warn]: Invalid context value for context data "${name}": Context datas with type Object/Array must use a factory function to return the default value.`);
+                        else
+                            value = value.apply(this);
+                    } else if (type === 'Function')
+                        value = value.bind(this);
+                }
                 this.__$$context[name] = {
                     type: item.type,
-                    value
+                    value,
                 };
             }
-            for(const name of Object.keys(this.__$$context)) {
+            for (const name of Object.keys(this.__$$context)) {
                 const context = this.__$$context[name];
-                if(!this.$options.computed)
+                if (!this.$options.computed)
                     this.$options.computed = {};
-                if(this.$options.computed[name])
+                if (this.$options.computed[name])
                     throw new Error(`[vue-context-data]: ${name} has been declared in computed`);
                 else {
                     this.$options.computed[name] = {
                         get() {
-                            return this.__$$context[name].value;0
+                            return this.__$$context[name].value;
                         },
                         set(newValue) {
                             checkValueType(newValue, context.type, name);
@@ -43,8 +45,8 @@ export default {
                                 value: newValue,
                                 oldValue,
                             });
-                        }
-                    }
+                        },
+                    };
                 }
             }
         }
@@ -53,5 +55,5 @@ export default {
         return {
             __$$context: this.__$$context,
         };
-    }
-}
+    },
+};

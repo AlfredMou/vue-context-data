@@ -9,14 +9,15 @@
 </template>
 
 <script>
-import miXins from '../../../../src/childMixins.js';
 export default {
-    mixins: [miXins],
     contextTypes: {
         name: String,
         instance: {
             type: Object,
             default: () => ({}),
+            parent(dom) {
+                return dom.$options.name === 'u-main';
+            },
         },
     },
     data() {
