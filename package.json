@@ -9,9 +9,9 @@
     "test": "mocha --timeout 5000 ./test/integration.test.js"
   },
   "main": "/dist/index.js",
-  "repository": "necfe/js-repo-template",
+  "repository": "AlfredMou/vue-context-data",
   "bugs": {
-    "url": "http://github.com/necfe/js-repo-template/issues"
+    "url": "https://github.com/AlfredMou/vue-context-data/issues"
   },
   "license": "MIT",
   "keywords": [
