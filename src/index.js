@@ -5,5 +5,5 @@ export default {
     install(Vue) {
         Vue.mixin(parentMixins);
         Vue.mixin(childMixins);
-    }
-}
+    },
+};

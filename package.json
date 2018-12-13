@@ -2,13 +2,13 @@
   "name": "js-repo-template",
   "description": "A template for creating npm package repo",
   "version": "0.1.0",
-  "author": "Rainfore <rainforest92@126.com>",
+  "author": "moujintao <moujintaotest@163.com>",
   "scripts": {
     "lint": "eslint ./src --fix",
     "precommit": "node node_modules/vusion-hooks/precommit",
     "test": "mocha --timeout 5000 ./test/integration.test.js"
   },
-  "main": "./index.js",
+  "main": "/dist/index.js",
   "repository": "necfe/js-repo-template",
   "bugs": {
     "url": "http://github.com/necfe/js-repo-template/issues"
@@ -26,6 +26,9 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-loader": "^8.0.4",
     "eslint": "^4.19.1",
     "eslint-config-vusion": "^2.1.3",
     "husky": "^0.14.3",
@@ -35,6 +38,7 @@
     "vue-template-compiler": "^2.5.17",
     "vusion-hooks": "^0.2.1",
     "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
   }
 }
