@@ -1,9 +1,9 @@
 # vue-context-data
 
-react context vue版本，主要用于隔代父子之间的数据通信
-这个vue插件主要的作用是隔代父子通信，并不仅仅是为了模仿react主要用于解决以下两个问题
-1. 简单应用中在不引入vuex情况下简化隔代父子组件通信与同一数据的共享与更改（vuex确实能够很好的管理应用的数据与状态但是实际上维护store的开发成本也是比较高的，简单应用或者模块数据简单其封闭的应用引入复杂的数据管理并不一定是很好的选择）。
-2. vuex下的介于业务组件与通用组件之间的组件与vuex的解耦（很抱歉，我更喜欢react-redux的connect的方式进行数据绑定，vuex官方推荐的调用方式对进行业务数据处理的组件，但是同时又具有通用性的组件并不是特别友好，这种引入并分发的方式很容易让组件与vuex强耦合在一起）
+React context for vue, mainly used for data communication between father component and son component.
+The main function of this vue plugin is to communicate between parent and child, not just to simulate react mainly to solve the following two problems.
+1. Simple application simplifies the sharing of parent and child component communication and the sharing and change of the same data without introducing vuex (vuex can really manage the data and state of the application well, but in fact the development cost of maintaining the store is relatively high, Simple application or simple module data. The introduction of complex data management in closed applications is not necessarily a good choice.
+2. The decoupling between the component between the business component and the common component under vuex and vuex (sorry, I prefer the method of connect-react-redux for data binding, vuex officially recommended calling mode for business data The components that are processed, but at the same time versatile components are not particularly friendly, and the way to introduce and distribute is easy to couple components with vuex)
 
 ## 安装
 
@@ -13,13 +13,13 @@ npm install vue-context-data --save
 
 ## 基础使用
 
-全局注册vue-context-data
+Global registration vue-context-data
 ```javascript
 import VueContextData from 'vue-context-data';
 
 Vue.use(VueContextData);
 ```
-父组件通过context声明Context Data
+The parent component declares Context Data via context
 ``` javascript
 export default {
     name: 'u-main',
@@ -39,7 +39,7 @@ export default {
     },
 }
 ```
-子组件通过contextTypes声明接受的context data类型, 声明context将自动绑定最近的并声明有context的上级组件中的context。
+The child component declares the accepted context data type through contextTypes, and declares that the context will automatically bind the context in the parent component of the most recent and declared context.
 ``` javascript
 export default {
     contextTypes: {
@@ -48,9 +48,9 @@ export default {
     },
 }
 ```
-## 设置默认值
-vue-context-data属性设置上参考了vue的props，允许用户设置默认值，如果子组件的parent并未设置context data中的值默认值将自动填充contextTypes中申明的default。同时如果父组件的context声明了value也将会在初始化时自动填充。
-父组件中的context声明
+## Set default value
+The vue-context-data property setting refers to the props of vue, allowing the user to set the default value. If the parent of the child component does not set the value in the context data, the default value will automatically fill the default declared in the contextTypes. At the same time, if the parent component's context declares value, it will be automatically populated at initialization time.
+a context declaration in the parent component
 ``` javascript
 export default {
     name: 'u-main',
@@ -70,7 +70,7 @@ export default {
     },
 }
 ```
-子组件中的contextTypes声明
+a contextTypes declaration in a child component
 ``` javascript
 export default {
     contextTypes: {
@@ -87,9 +87,8 @@ export default {
     }
 }
 ```
-## 自定义选择父节点
-有时候往往上级组件中并不仅有一个组件声明有context，这个时候就需要通过自定义筛选函数来进行筛选，这里建议用$options中的标记属性作为筛选条件
-父组件中的context声明
+## Custom selection parent node
+a context declaration in the parent component
 ``` javascript
 export default {
     name: 'u-main',
@@ -109,7 +108,7 @@ export default {
     },
 }
 ```
-子组件中的contextTypes声明
+a contextTypes declaration in a child component
 ``` javascript
 export default {
     contextTypes: {
@@ -130,15 +129,15 @@ export default {
 }
 ```
 
-## 修改日志
+## Changelog
 
 参见[Releases](https://github.com/AlfredMou/vue-context-data/releases)
 
-## 建议与bug
+## Suggestions and bugs
 
 参见[Releases](https://github.com/AlfredMou/vue-context-data/issues)
 
 
-## 开源协议
+## License
 
 参见[LICENSE](LICENSE)

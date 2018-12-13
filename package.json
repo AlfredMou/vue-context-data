@@ -1,6 +1,6 @@
 {
-  "name": "js-repo-template",
-  "description": "A template for creating npm package repo",
+  "name": "vue-context-data",
+  "description": "Vue context, used for vue generation components to synchronize data data, similar to the context function of react",
   "version": "0.1.0",
   "author": "moujintao <moujintaotest@163.com>",
   "scripts": {
@@ -15,14 +15,14 @@
   },
   "license": "MIT",
   "keywords": [
-    "js",
-    "repo",
-    "template"
+    "vue",
+    "context",
+    "data"
   ],
   "tags": [
-    "js",
-    "repo",
-    "template"
+    "vue",
+    "context",
+    "data"
   ],
   "dependencies": {},
   "devDependencies": {
