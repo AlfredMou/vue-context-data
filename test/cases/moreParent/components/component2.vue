@@ -14,6 +14,9 @@ export default {
             default: () => {
                 // ‘default’
             },
+            parent(dom) {
+                return dom.$options.name === 'u-main';
+            },
         },
     },
     data() {
