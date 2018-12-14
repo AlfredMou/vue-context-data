@@ -1,17 +1,17 @@
 # vue-context-data
-
+- [中文说明](README.zh-CN.md)
 React context for vue, mainly used for data communication between father component and son component.
 The main function of this vue plugin is to communicate between parent and child, not just to simulate react mainly to solve the following two problems.
 1. Simple application simplifies the sharing of parent and child component communication and the sharing and change of the same data without introducing vuex (vuex can really manage the data and state of the application well, but in fact the development cost of maintaining the store is relatively high, Simple application or simple module data. The introduction of complex data management in closed applications is not necessarily a good choice.
 2. The decoupling between the component between the business component and the common component under vuex and vuex (sorry, I prefer the method of connect-react-redux for data binding, vuex officially recommended calling mode for business data The components that are processed, but at the same time versatile components are not particularly friendly, and the way to introduce and distribute is easy to couple components with vuex)
 
-## 安装
+## Installation
 
 ``` shell
 npm install vue-context-data --save
 ```
 
-## 基础使用
+## Basic use
 
 Global registration vue-context-data
 ```javascript
@@ -131,13 +131,13 @@ export default {
 
 ## Changelog
 
-参见[Releases](https://github.com/AlfredMou/vue-context-data/releases)
+See [Releases](https://github.com/AlfredMou/vue-context-data/releases)
 
 ## Suggestions and bugs
 
-参见[Releases](https://github.com/AlfredMou/vue-context-data/issues)
+See [Releases](https://github.com/AlfredMou/vue-context-data/issues)
 
 
 ## License
 
-参见[LICENSE](LICENSE)
+See [LICENSE](LICENSE)
