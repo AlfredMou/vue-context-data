@@ -1,5 +1,7 @@
 # vue-context-data
+
 - [中文说明](README.zh-CN.md)
+
 React context for vue, mainly used for data communication between father component and son component.
 The main function of this vue plugin is to communicate between parent and child, not just to simulate react mainly to solve the following two problems.
 1. Simple application simplifies the sharing of parent and child component communication and the sharing and change of the same data without introducing vuex (vuex can really manage the data and state of the application well, but in fact the development cost of maintaining the store is relatively high, Simple application or simple module data. The introduction of complex data management in closed applications is not necessarily a good choice.
