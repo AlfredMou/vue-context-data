@@ -5,6 +5,19 @@ class ComputedContext {
         this.value = value;
     }
 }
+function getDefaultValue(defaultValue, typeStr) {
+    let value = defaultValue;
+    if (value !== undefined) {
+        if (typeStr === 'Object' || typeStr === 'Array') {
+            if (toRawType(value) !== 'Function')
+                throw new Error(`[vue-context-data warn]: Invalid default value for context data "${name}": Context datas with type Object/Array must use a factory function to return the default value.`);
+            else
+                value = value.apply(this);
+        } else if (typeStr === 'Function')
+            value = value.bind(this);
+    }
+    return value;
+}
 export default {
     beforeCreate() {
         const context = this.$options.contextTypes;
@@ -23,33 +36,24 @@ export default {
                 if (!contextParent)
                     break;
                 let value;
-                if (contextParent.__$$context && contextParent.__$$context.hasOwnProperty(name) && contextParent.__$$context[name] !== undefined) {
+                if (contextParent.__$$context && contextParent.__$$context.hasOwnProperty(name) && contextParent.__$$context[name] !== undefined)
                     value = contextParent[name];
-                } else {
-                    value = defaultValue;
-                    if (value !== undefined) {
-                        if (typeStr === 'Object' || typeStr === 'Array') {
-                            if (toRawType(value) !== 'Function')
-                                throw new Error(`[vue-context-data warn]: Invalid default value for context data "${name}": Context datas with type Object/Array must use a factory function to return the default value.`);
-                            else
-                                value = value.apply(this);
-                        } else if (typeStr === 'Function')
-                            value = value.bind(this);
-                    }
-                }
+                else
+                    value = getDefaultValue(defaultValue, typeStr);
                 checkValueType(value, type, name);
                 this.__$$contextData[name] = value;
                 contextParent.$on(`update-context:${name}`, ({ value }) => {
-                    checkValueType(value, type, name);
+                    if (value === undefined)
+                        value = getDefaultValue(defaultValue, typeStr);
+                    else
+                        checkValueType(value, type, name);
                     this[name] = new ComputedContext(value);
                 });
             }
             for (const name of Object.keys(this.__$$contextData)) {
                 if (!this.$options.computed)
                     this.$options.computed = {};
-                if (this.$options.computed[name])
-                    throw new Error(`[vue-context-data]: ${name} has been declared in computed`);
-                else {
+                if (!this.$options.computed[name]) {
                     this.$options.computed[name] = {
                         get() {
                             return this.__$$contextData[name];

@@ -30,9 +30,7 @@ export default {
                 const context = this.__$$context[name];
                 if (!this.$options.computed)
                     this.$options.computed = {};
-                if (this.$options.computed[name])
-                    throw new Error(`[vue-context-data]: ${name} has been declared in computed`);
-                else {
+                if (!this.$options.computed[name]) {
                     this.$options.computed[name] = {
                         get() {
                             return this.__$$context[name].value;
