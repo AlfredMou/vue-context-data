@@ -1,7 +1,7 @@
 {
   "name": "vue-context-data",
   "description": "Vue context, used for vue generation components to synchronize data data, similar to the context function of react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "moujintao <moujintaotest@163.com>",
   "scripts": {
     "lint": "eslint ./src --fix",
